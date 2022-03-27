@@ -1,74 +1,61 @@
 package br.com.aplicacaojava;
-public class Aplicação {
-	private Integer id;
-	private String nome;
-	private String endereco;
-	private String municipio;
-	private String cep;
-	private String tel;
-	private String cel;
-	private String cpf;
-	private String cnpj;
-	private String genero;
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public String getNome() {
-		return nome;
-	}
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
-	public String getMunicipio() {
-		return municipio;
-	}
-	public void setMunicipio(String municipio) {
-		this.municipio = municipio;
-	}
-	public String getCep() {
-		return cep;
-	}
-	public void setCep(String cep) {
-		this.cep = cep;
-	}
-	public String getTel() {
-		return tel;
-	}
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-	public String getCel() {
-		return cel;
-	}
-	public void setCel(String cel) {
-		this.cel = cel;
-	}
-	public String getCpf() {
-		return cpf;
-	}
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
-	public String getCnpj() {
-		return cnpj;
-	}
-	public void setCnpj(String cnpj) {
-		this.cnpj = cnpj;
-	}
-	public String getGenero() {
-		return genero;
-	}
-	public void setGenero(String genero) {
-		this.genero = genero;
-	} 
+import java.text.ParseException;
 
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
+
+public class Principal {
+	public MaskFormatter maskTel(JFormattedTextField textfield) throws ParseException{
+	MaskFormatter mask = null;
+	mask = new MaskFormatter("(##)####-####");
+	mask.setOverwriteMode(true);
+	mask.setValidCharacters("0123456789");
+	mask.setPlaceholderCharacter('_');
+	mask.install(textfield);
+	return mask;
+	}
+
+
+public MaskFormatter maskCel(JFormattedTextField textfield) throws ParseException{
+MaskFormatter mask = null;
+mask = new MaskFormatter("(##)#####-####");
+mask.setOverwriteMode(true);
+mask.setValidCharacters("0123456789");
+mask.setPlaceholderCharacter('_');
+mask.install(textfield);
+return mask;
+
+}
+
+
+public MaskFormatter maskCpf(JFormattedTextField textfield) throws ParseException{
+MaskFormatter mask = null;
+mask = new MaskFormatter("###.###.###-##");
+mask.setOverwriteMode(true);
+mask.setValidCharacters("0123456789");
+mask.setPlaceholderCharacter('_');
+mask.install(textfield);
+return mask;
+}
+ 
+public MaskFormatter maskCep(JFormattedTextField textfield) throws ParseException{
+MaskFormatter mask = null;
+mask = new MaskFormatter("#####-###");
+mask.setOverwriteMode(true);
+mask.setValidCharacters("0123456789");
+mask.setPlaceholderCharacter('_');
+mask.install(textfield);
+return mask;
+}
+
+public MaskFormatter maskCnpj(JFormattedTextField textfield) throws ParseException{
+MaskFormatter mask = null;
+mask = new MaskFormatter("##.###.###/####-##");
+mask.setOverwriteMode(true);
+mask.setValidCharacters("0123456789");
+mask.setPlaceholderCharacter('_');
+mask.install(textfield);
+return mask;
+
+}
 }
