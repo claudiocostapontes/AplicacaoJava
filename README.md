@@ -1,61 +1,25 @@
 package br.com.aplicacaojava;
-import java.text.ParseException;
 
-import javax.swing.JFormattedTextField;
-import javax.swing.text.MaskFormatter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class Principal {
-	public MaskFormatter maskTel(JFormattedTextField textfield) throws ParseException{
-	MaskFormatter mask = null;
-	mask = new MaskFormatter("(##)####-####");
-	mask.setOverwriteMode(true);
-	mask.setValidCharacters("0123456789");
-	mask.setPlaceholderCharacter('_');
-	mask.install(textfield);
-	return mask;
+public class Conectar {
+	static String url = "jdbc:mysql://localhost/cadastrocliente";
+	static String usuario = "root";
+	static String senha = "";
+	static Connection con;
+	 
+	public static Connection getConexao() throws SQLException{
+	try{
+	Class.forName("org.gjt.mm.mysql.Driver");
+	if(con == null){
+	con = (Connection) DriverManager.getConnection(url, usuario, senha);
 	}
-
-
-public MaskFormatter maskCel(JFormattedTextField textfield) throws ParseException{
-MaskFormatter mask = null;
-mask = new MaskFormatter("(##)#####-####");
-mask.setOverwriteMode(true);
-mask.setValidCharacters("0123456789");
-mask.setPlaceholderCharacter('_');
-mask.install(textfield);
-return mask;
-
-}
-
-
-public MaskFormatter maskCpf(JFormattedTextField textfield) throws ParseException{
-MaskFormatter mask = null;
-mask = new MaskFormatter("###.###.###-##");
-mask.setOverwriteMode(true);
-mask.setValidCharacters("0123456789");
-mask.setPlaceholderCharacter('_');
-mask.install(textfield);
-return mask;
-}
- 
-public MaskFormatter maskCep(JFormattedTextField textfield) throws ParseException{
-MaskFormatter mask = null;
-mask = new MaskFormatter("#####-###");
-mask.setOverwriteMode(true);
-mask.setValidCharacters("0123456789");
-mask.setPlaceholderCharacter('_');
-mask.install(textfield);
-return mask;
-}
-
-public MaskFormatter maskCnpj(JFormattedTextField textfield) throws ParseException{
-MaskFormatter mask = null;
-mask = new MaskFormatter("##.###.###/####-##");
-mask.setOverwriteMode(true);
-mask.setValidCharacters("0123456789");
-mask.setPlaceholderCharacter('_');
-mask.install(textfield);
-return mask;
-
-}
+	
+	return con;
+	}catch(ClassNotFoundException e){
+	throw new SQLException(e.getMessage());
+	}
+	}
 }
